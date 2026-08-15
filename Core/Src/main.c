@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ecocar_can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,7 +38,8 @@ typedef StaticTask_t osStaticThreadDef_t;
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+fdcanBytes_t test_b;
+fdcanBytes_t test_b2;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/

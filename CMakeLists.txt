@@ -42,14 +42,40 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
 )
 
+# Include external Libraries
+# FetchContent Documentation: https://cmake.org/cmake/help/latest/module/FetchContent.html
+include(FetchContent)
+
+set(FETCHCONTENT_BASE_DIR ${CMAKE_SOURCE_DIR}/Modules)
+# Turn OFF if EcoLib is not already downloaded
+# set(FETCHCONTENT_FULLY_DISCONNECTED ON)
+
+FetchContent_Declare(
+    EcoLib
+    GIT_REPOSITORY git@github.com:UAlberta-EcoCar/EcoLib.git
+    GIT_TAG main
+    GIT_SHALLOW TRUE
+    GIT_PROGRESS ON
+    SYSTEM
+)
+# more `FetchContent_Declare`s (if any). They should all be declared
+# before any calls to FetchContent_Make_available (see docs for why).
+
+FetchContent_MakeAvailable(EcoLib)
+# more `FetchContent_MakeAvailable`s (if any).
+
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user sources here
+# Add user sources here
+    # Include ecocan
+    ${CMAKE_SOURCE_DIR}/Modules/ecolib-src/ecocan/ecocar_can.c
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    # Include ecocan
+    ${CMAKE_SOURCE_DIR}/Modules/ecolib-src/ecocan
 )
 
 # Add project symbols (macros)
